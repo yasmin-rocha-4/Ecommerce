@@ -1,0 +1,37 @@
+.input-container {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+  }
+  
+  .custom-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    color: #aaa;
+    pointer-events: none; /* Permite que o clique passe direto para o input */
+  }
+  
+  .placeholder-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Espaço para a imagem */
+    font-size: 16px;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  
+  .focused .custom-placeholder {
+    display: none; /* Esconde o placeholder ao focar no input */
+  }
+  
