@@ -2,9 +2,17 @@ import React from "react";
 interface BotaoAcaoProps{
     comando: string;
     className?: string;
+    funcao: (e: React.FormEvent) => Promise<void>; 
 }
 const BotaoAcao: React.FC<BotaoAcaoProps> = props =>{
-    return(<button>{props.comando}</button>);
+    return(<button onClick = {props.funcao} className="btn btn-primary col-12 mx-auto" style={styles.btnCustom}>{props.comando}</button>);
 }
+const styles = {
+    btnCustom: {
+        background: "#0ACF83", /* Cor de fundo personalizada */
+        border: "none",
+        height: "60px"
+      }
+};
    
 export default BotaoAcao;

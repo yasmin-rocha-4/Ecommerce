@@ -1,0 +1,5 @@
+html, body {
+    height: 100%; /* Garante que o contêiner tenha referência */
+    margin: 0; /* Remove margens padrão */
+    font-family: 'DM Sans', sans-serif;
+  }

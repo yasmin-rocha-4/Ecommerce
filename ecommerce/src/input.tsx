@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import "./Input.css";
-
+import React from "react";
+import "./login.css"
 interface InputProps {
   imgSrc: string; // URL da imagem
   imgAlt: string; // Texto alternativo para a imagem
@@ -12,22 +11,15 @@ const Input: React.FC<InputProps> = ({
   imgAlt,
   placeholderText,
 }) => {
-  const [isFocused, setIsFocused] = useState(false);
-
-  return (
-    <div className={`input-container ${isFocused ? "focused" : ""}`}>
-      {!isFocused && (
-        <div className="custom-placeholder">
-          <img src={imgSrc} alt={imgAlt} className="placeholder-icon" />
-          <span className="placeholder-text">{placeholderText}</span>
-        </div>
-      )}
-      <input
-        onFocus={() => setIsFocused(true)}
-        onBlur={(e) => setIsFocused(e.target.value === "")}
-      />
+  return(
+    <div className="form-floating mb-3">
+      <input className="form-control"  placeholder={placeholderText} />
+      <label htmlFor="floatingInput">
+      <img src={imgSrc} alt={imgAlt} />
+      </label>
+     
     </div>
-  );
+  )
 };
 
 export default Input;
