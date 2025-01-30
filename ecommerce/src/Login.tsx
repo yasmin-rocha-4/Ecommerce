@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import BotaoAcao from "./BotaoAcao";
 import EntrarComGoogle from "./EntrarComGoogle";
-import TrocarPaginaLogin from "./trocarPaginaLogin";
+import TrocarPaginaLogin from "./TrocarPaginaLogin";
 import IconeEmail from "./assets/Icon/mail.svg";
 import cadeado from "./assets/Icon/lock.svg";
 import "./login.css";
 import fundoLogin from "./assets/fundoLogin.svg";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
-  onSwitchToCadastro: () => void;
   titulo: string;
   descricao: string;
 }
 
-const Login: React.FC<LoginProps> = ({ onSwitchToCadastro, titulo, descricao }) => {
+const Login: React.FC<LoginProps> = ({ titulo, descricao }) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState<string | null>(null);
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,6 +28,7 @@ const Login: React.FC<LoginProps> = ({ onSwitchToCadastro, titulo, descricao }) 
       const credencialUsuario = await signInWithEmailAndPassword(auth, email, senha);
       console.log("Usuário logado:", credencialUsuario.user);
       alert("Login feito com sucesso!");
+      navigate("/home"); 
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -93,10 +96,8 @@ const Login: React.FC<LoginProps> = ({ onSwitchToCadastro, titulo, descricao }) 
       <TrocarPaginaLogin
         texto="Didn't have any account?"
         textoLink="Sign Up here"
-        onClick={onSwitchToCadastro}
       />
     </div>
   );
 };
-
 export default Login;

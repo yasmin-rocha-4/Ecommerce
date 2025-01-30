@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import BotaoAcao from "./BotaoAcao";
 import EntrarComGoogle from "./EntrarComGoogle";
-import TrocarPaginaLogin from "./trocarPaginaLogin";
+import TrocarPaginaLogin from "./TrocarPaginaLogin";
 import iconeEmail from "./assets/Icon/mail.svg";
 import cadeado from "./assets/Icon/lock.svg";
 import fundoLogin from "./assets/fundoLogin.svg";
 import "./login.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebase"; // Ajuste o caminho para o seu arquivo firebase.ts
+import { auth } from "./firebase"; 
 interface CadastroProps {
-  onSwitchToLogin: () => void;
   titulo: string;
   descricao: string;
 
 }
 
 const Cadastro: React.FC<CadastroProps> = (props) => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -82,7 +80,7 @@ const Cadastro: React.FC<CadastroProps> = (props) => {
       {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
     </div>
       <EntrarComGoogle  texto="Sign Up with Google"/>
-      <TrocarPaginaLogin texto="already have an account?" textoLink="Sign In here"  onClick={props.onSwitchToLogin} />
+      <TrocarPaginaLogin texto="already have an account?" textoLink="Sign In here" />
     </div>
   );
 };

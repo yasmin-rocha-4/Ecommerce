@@ -1,12 +1,13 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 interface TrocarPaginaLoginProps{
     texto:string;
     textoLink: string;
-    onClick: () => void;
+    
 }
 
-const TrocarPaginaLogin: React.FC<TrocarPaginaLoginProps> = ({texto, textoLink, onClick}) =>{
+const TrocarPaginaLogin: React.FC<TrocarPaginaLoginProps> = ({texto, textoLink}) =>{
+    const navigate = useNavigate();
     return(
         <div style={{
             display: "flex",
@@ -23,7 +24,7 @@ const TrocarPaginaLogin: React.FC<TrocarPaginaLoginProps> = ({texto, textoLink, 
             <p>{texto}</p>
             <a href="#" onClick={(e) => {
               e.preventDefault(); // Evita o comportamento padrão de recarregar a página
-              onClick(); 
+              navigate("/cadastro");
             }} style={{color: "#0ACF83"}}>
               {textoLink}
             </a>

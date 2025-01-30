@@ -9,7 +9,7 @@ const BotaoAcao: React.FC<BotaoAcaoProps> = props =>{
 }
 const styles = {
     btnCustom: {
-        background: "#0ACF83", /* Cor de fundo personalizada */
+        background: "#0ACF83", 
         border: "none",
         height: "60px"
       }
