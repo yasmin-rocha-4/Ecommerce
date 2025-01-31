@@ -5,11 +5,14 @@ import BotoesCategoria from "./BotoesCategoria";
 import CarrosselDois from "./CarrosselDois";
 import CarrosselUm from "./CarrosselUm";
 import VerTodos from "./VerTodos";
+import menuIcon from "./assets/Icon/menu-variant.svg";
+import logoIcon from "./assets/Icon/Logo.svg";
+import avatarIcon from "./assets/Icon/Avatar.svg";
 const Home: React.FC = () =>{
     const [categoriaSelecionada, setCategoriaSelecionada] = useState("Headphones");
     return(
         <div style={styles.paiHome}>
-            <Navbar/>
+            <Navbar opcao={menuIcon} titulo={logoIcon} icone={avatarIcon}/>
             <p>Hi, Andrea</p>
             <p style={styles.boasVindas}>What are you looking for today</p>
             <BarraPesquisa/>

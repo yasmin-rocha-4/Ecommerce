@@ -14,7 +14,9 @@ const AllProducts: React.FC = () => {
   }
 
   return (
-    <div>
+    <div style={{fontFamily:"Montserrat, serif"}}>
+      
+      <p style={{fontSize:"1.5rem", fontWeight:"bold", margin:"20px"}}>All Products</p>
       <CardProduto ListaProduto={produtos} /> 
     </div>
   );

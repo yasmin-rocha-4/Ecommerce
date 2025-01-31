@@ -4,6 +4,7 @@ import Cadastro from "./cadastro";
 import Home from "./Home";
 import AllProducts from "./AllProducts";
 import ProductDetail from "./ProductDetail";
+import Search from "./Search";
 function App() {
   return (
     <Router>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/allProducts" element={<AllProducts />} />
         <Route path="/productDetail" element = {<ProductDetail/>}/>
+        <Route path="/search" element = {<Search/>}/>
       </Routes>
     </Router>
   );
