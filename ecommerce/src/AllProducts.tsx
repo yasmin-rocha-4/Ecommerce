@@ -38,20 +38,21 @@ const AllProducts: React.FC = () => {
   return (
     <div>
       <NavBarCarrinho voltar={voltar} />
+      <h1 style={{margin:"20px", fontWeight:"bold"}}>All Products</h1>
       <button
         onClick={() => setShowFilter(true)}
         style={{
           padding: "10px",
           backgroundColor: "#ffff",
           color: "black",
-          border: "1px solid",
+          border: "1px solid #BABABA",
           cursor: "pointer",
           margin: "20px",
           borderRadius: "8px",
           width:"90%"
         }}
       >
-        <img src={icone} alt="" />
+        <img style={{marginRight:"10px"}} src={icone} alt="" />
         Filter
       </button>
 
