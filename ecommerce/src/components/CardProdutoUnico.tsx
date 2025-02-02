@@ -1,7 +1,7 @@
 import React from "react";
 import { CardProdutoProps } from "./CardProduto";
 import { useNavigate } from "react-router-dom";
-import setaDireita from "./assets/Icon/arrow-right.svg"
+import setaDireita from "../assets/Icon/arrow-right.svg"
 const CardProdutoUnico: React.FC<CardProdutoProps> = ({ListaProduto}) =>{
     const produtos = ListaProduto;
     const navigate = useNavigate();

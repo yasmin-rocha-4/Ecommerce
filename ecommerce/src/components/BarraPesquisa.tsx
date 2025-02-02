@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import iconPesquisa from "./assets/Icon/IconePesquisa.svg";
+import iconPesquisa from "../assets/Icon/IconePesquisa.svg";
 import { useNavigate } from "react-router-dom";
 import UseProdutos from "./Produtos";
 import CardHorizontal from "./CardHorizontal";

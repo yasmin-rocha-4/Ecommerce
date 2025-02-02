@@ -1,6 +1,6 @@
 import React from "react";
 import renderStars from "./estrelas";
-import avatar from "./assets/Icon/Avatar.svg"; // Avatar fixo, pode ser dinâmico caso necessário
+import avatar from "../assets/Icon/Avatar.svg"; // Avatar fixo, pode ser dinâmico caso necessário
 import { useLocation } from "react-router-dom";
 import { Produto } from "./Produtos";
 import VerTodos from "./VerTodos";

@@ -1,6 +1,6 @@
 import React from "react";
-import seta from "./assets/Icon/chevron-left.svg";
-import carrinho from "./assets/Icon/shopping-cart.svg";
+import seta from "../assets/Icon/chevron-left.svg";
+import carrinho from "../assets/Icon/shopping-cart.svg";
 interface NavBarCarrinhoProps{
   funcao?: (e: React.FormEvent<Element>) => void | Promise<void>;
   voltar?: (e: React.FormEvent<Element>) => void | Promise<void>;

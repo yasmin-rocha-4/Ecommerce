@@ -1,5 +1,5 @@
 import React from "react";
-import google from "./assets/Icon/google.png";
+import google from "../assets/Icon/google.png";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../utils/firebase"; // Certifique-se de ajustar o caminho para o arquivo firebase.ts
 

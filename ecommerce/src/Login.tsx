@@ -4,7 +4,7 @@ import EntrarComGoogle from "./components/EntrarComGoogle";
 import TrocarPaginaLogin from "./components/TrocarPaginaLogin";
 import IconeEmail from "./assets/Icon/mail.svg";
 import cadeado from "./assets/Icon/lock.svg";
-import "./login.css";
+import "./assets/login.css";
 import fundoLogin from "./assets/fundoLogin.svg";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./utils/firebase";
@@ -27,7 +27,6 @@ const Login: React.FC<LoginProps> = ({ titulo, descricao }) => {
     try {
       const credencialUsuario = await signInWithEmailAndPassword(auth, email, senha);
       console.log("Usuário logado:", credencialUsuario.user);
-      alert("Login feito com sucesso!");
       navigate("/home"); 
     } catch (error) {
       if (error instanceof Error) {
