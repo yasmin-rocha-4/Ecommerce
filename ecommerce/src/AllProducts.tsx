@@ -1,28 +1,68 @@
-import React from "react";
-import CardProduto from "./CardProduto";
+import React, { useState } from "react";
 import UseProdutos from "./Produtos";
+import CardProduto from "./CardProduto";
 import NavBarCarrinho from "./NavBarCarrinho";
-import iconeFiltro from "./assets/Icon/sliders.svg"
+import FiltroModal from "./filtro";
+import icone from "./assets/Icon/sliders.svg";
 const AllProducts: React.FC = () => {
-  const { produtos, loading, error } = UseProdutos(); // Desestruturação do hook
+  const { produtos, loading, error } = UseProdutos();
+  const [showFilter, setShowFilter] = useState<boolean>(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedSort, setSelectedSort] = useState<string>("Popularity");
 
-  if (loading) {
-    return <p>Carregando produtos...</p>;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
+  let filteredProducts = produtos;
+
+  // Filtragem por categoria
+  if (selectedCategory !== "All") {
+    filteredProducts = filteredProducts.filter(
+      (produto) => produto.category === selectedCategory
+    );
   }
 
-  if (error) {
-    return <p>Erro ao carregar produtos: {error}</p>;
+  // Ordenação
+  if (selectedSort === "High Price") {
+    filteredProducts = filteredProducts.sort(
+      (a, b) => b.price - a.price
+    );
+  } else if (selectedSort === "Low Price") {
+    filteredProducts = filteredProducts.sort(
+      (a, b) => a.price - b.price
+    );
   }
 
   return (
-    <div style={{fontFamily:"Montserrat, serif"}}>
-      <NavBarCarrinho/>
-      <p style={{fontSize:"1.5rem", fontWeight:"bold", margin:"20px"}}>All Products</p>
-      <button style={{width:"90%", height:"40px",display:"flex", gap:"1rem", justifyContent:"center", alignItems:"center", margin:"20px", borderRadius:"8px", borderColor: "#bababa", background:"#FFFF", marginBottom:"100px"}}>
-        <img src={iconeFiltro} alt="" />
-        <p style={{margin:"0"}}>filter</p>
+    <div>
+      <NavBarCarrinho />
+      <button
+        onClick={() => setShowFilter(true)}
+        style={{
+          padding: "10px",
+          backgroundColor: "#ffff",
+          color: "black",
+          border: "1px solid",
+          cursor: "pointer",
+          margin: "20px",
+          borderRadius: "8px",
+          width:"90%"
+        }}
+      >
+        <img src={icone} alt="" />
+        Filter
       </button>
-      <CardProduto ListaProduto={produtos} /> 
+
+      <FiltroModal
+        showFilter={showFilter}
+        setShowFilter={setShowFilter}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        selectedSort={selectedSort}
+        setSelectedSort={setSelectedSort}
+      />
+
+      <CardProduto ListaProduto={filteredProducts} />
     </div>
   );
 };

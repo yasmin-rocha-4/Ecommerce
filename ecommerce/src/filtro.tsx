@@ -1,98 +1,212 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native-web';
-import BottomSheet from '@gorhom/bottom-sheet';
+import React from "react";
 
-export type FilterBottomSheetRef = {
-  expand: () => void;
-};
+interface FiltroModalProps {
+  showFilter: boolean;
+  setShowFilter: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedCategory: string;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  selectedSort: string;
+  setSelectedSort: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const FilterBottomSheet = forwardRef<FilterBottomSheetRef>((_, ref) => {
-  const bottomSheetRef = useRef<BottomSheet>(null);
-
-  useImperativeHandle(ref, () => ({
-    expand: () => {
-      bottomSheetRef.current?.expand();
-    },
-  }));
-
-  const handleApplyFilter = () => {
-    // Lógica para aplicar filtro
-    bottomSheetRef.current?.close();
-  };
+const FiltroModal: React.FC<FiltroModalProps> = ({
+  showFilter,
+  setShowFilter,
+  selectedCategory,
+  setSelectedCategory,
+  selectedSort,
+  setSelectedSort,
+}) => {
+  if (!showFilter) return null;
 
   return (
-    <BottomSheet
-      ref={bottomSheetRef}
-      index={-1}
-      snapPoints={['25%', '50%']}
-      enablePanDownToClose
+    <div
+      style={{
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 50,
+      }}
+      onClick={() => setShowFilter(false)}
     >
-      <View style={styles.contentContainer}>
-        <Text style={styles.title}>Filter</Text>
-        <Text style={styles.subtitle}>Category</Text>
-        <TouchableOpacity style={styles.filterOption}>
-          <Text>Headphone</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filterOption}>
-          <Text>Headset</Text>
-        </TouchableOpacity>
-        <Text style={styles.subtitle}>Sort By</Text>
-        <TouchableOpacity style={styles.filterOption}>
-          <Text>Popularity</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filterOption}>
-          <Text>Newest</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filterOption}>
-          <Text>Oldest</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filterOption}>
-          <Text>High Price</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filterOption}>
-          <Text>Low Price</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.applyButton} onPress={handleApplyFilter}>
-          <Text style={styles.applyButtonText}>Apply Filter</Text>
-        </TouchableOpacity>
-      </View>
-    </BottomSheet>
+      <div
+        style={{
+          backgroundColor: "white",
+          borderRadius: "8px",
+          padding: "20px",
+          width: "90%",
+          maxWidth: "400px",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "16px",
+          }}
+        >
+          <h2 style={{ fontSize: "1.25rem", fontWeight: "600" }}>Filter</h2>
+          <button
+            style={{
+              fontSize: "1.25rem",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "#555",
+            }}
+            onClick={() => setShowFilter(false)}
+          >
+            ✖
+          </button>
+        </div>
+
+        {/* Categoria */}
+        <div style={{ marginBottom: "16px" }}>
+          <h3 style={{ fontSize: "1rem", fontWeight: "500", marginBottom: "8px" }}>
+            Category
+          </h3>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button
+              style={{
+                padding: "8px 16px",
+                backgroundColor: selectedCategory === "headphones" ? "#28a745" : "#fff",
+                color: selectedCategory === "headphones" ? "#fff" : "#000",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectedCategory("headphones")}
+            >
+              Headphone
+            </button>
+            <button
+              style={{
+                padding: "8px 16px",
+                backgroundColor: selectedCategory === "headsets" ? "#28a745" : "#fff",
+                color: selectedCategory === "headsets" ? "#fff" : "#000",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectedCategory("headsets")}
+            >
+              Headset
+            </button>
+            <button
+              style={{
+                padding: "8px 16px",
+                backgroundColor: selectedCategory === "All" ? "#28a745" : "#fff",
+                color: selectedCategory === "All" ? "#fff" : "#000",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectedCategory("All")}
+            >
+              All
+            </button>
+          </div>
+        </div>
+
+        {/* Ordenar */}
+        <div style={{ marginBottom: "16px" }}>
+          <h3 style={{ fontSize: "1rem", fontWeight: "500", marginBottom: "8px" }}>
+            Sort By
+          </h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+            <button
+              style={{
+                padding: "8px",
+                backgroundColor: selectedSort === "Popularity" ? "#28a745" : "#fff",
+                color: selectedSort === "Popularity" ? "#fff" : "#000",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectedSort("Popularity")}
+            >
+              Popularity
+            </button>
+            <button
+              style={{
+                padding: "8px",
+                backgroundColor: selectedSort === "Newest" ? "#28a745" : "#fff",
+                color: selectedSort === "Newest" ? "#fff" : "#000",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectedSort("Newest")}
+            >
+              Newest
+            </button>
+            <button
+              style={{
+                padding: "8px",
+                backgroundColor: selectedSort === "Oldest" ? "#28a745" : "#fff",
+                color: selectedSort === "Oldest" ? "#fff" : "#000",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectedSort("Oldest")}
+            >
+              Oldest
+            </button>
+            <button
+              style={{
+                padding: "8px",
+                backgroundColor: selectedSort === "High Price" ? "#28a745" : "#fff",
+                color: selectedSort === "High Price" ? "#fff" : "#000",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectedSort("High Price")}
+            >
+              High Price
+            </button>
+            <button
+              style={{
+                padding: "8px",
+                backgroundColor: selectedSort === "Low Price" ? "#28a745" : "#fff",
+                color: selectedSort === "Low Price" ? "#fff" : "#000",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectedSort("Low Price")}
+            >
+              Low Price
+            </button>
+          </div>
+        </div>
+
+        <button
+          style={{
+            width: "100%",
+            backgroundColor: "#28a745",
+            color: "white",
+            padding: "12px",
+            borderRadius: "4px",
+            border: "none",
+            cursor: "pointer",
+          }}
+          onClick={() => setShowFilter(false)}
+        >
+          Apply Filter
+        </button>
+      </div>
+    </div>
   );
-});
+};
 
-const styles = StyleSheet.create({
-  contentContainer: {
-    flex: 1,
-    padding: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  subtitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 8,
-    marginBottom: 8,
-  },
-  filterOption: {
-    padding: 8,
-    marginVertical: 4,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 4,
-  },
-  applyButton: {
-    marginTop: 16,
-    padding: 16,
-    backgroundColor: '#007bff',
-    borderRadius: 4,
-    alignItems: 'center',
-  },
-  applyButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-});
-
-export default FilterBottomSheet;
+export default FiltroModal;
