@@ -1,4 +1,4 @@
-import { Produto } from "../Produtos";
+import { Produto } from "../components/Produtos";
 import estrela from "../assets/Icon/estrela.svg";
 import menuVertical from "../assets/Icon/more-vertical.svg"
 const contarReviews = (produto: Produto): number => {

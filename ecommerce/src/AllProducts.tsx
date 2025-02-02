@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import UseProdutos from "./Produtos";
-import CardProduto from "./CardProduto";
-import NavBarCarrinho from "./NavBarCarrinho";
-import FiltroModal from "./filtro";
+import UseProdutos from "./components/Produtos";
+import CardProduto from "./components/CardProduto";
+import NavBarCarrinho from "./components/NavBarCarrinho";
+import FiltroModal from "./components/filtro";
 import icone from "./assets/Icon/sliders.svg";
 import useGoBack from "./utils/useGoBack";
 const AllProducts: React.FC = () => {

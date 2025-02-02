@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import BotaoAcao from "./BotaoAcao";
-import EntrarComGoogle from "./EntrarComGoogle";
-import TrocarPaginaLogin from "./TrocarPaginaLogin";
+import BotaoAcao from "./components/BotaoAcao";
+import EntrarComGoogle from "./components/EntrarComGoogle";
+import TrocarPaginaLogin from "./components/TrocarPaginaLogin";
 import iconeEmail from "./assets/Icon/mail.svg";
 import cadeado from "./assets/Icon/lock.svg";
 import fundoLogin from "./assets/fundoLogin.svg";
 import "./login.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebase"; 
+import { auth } from "./utils/firebase"; 
 interface CadastroProps {
   titulo: string;
   descricao: string;

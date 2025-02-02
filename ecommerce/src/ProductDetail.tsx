@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import NavBarCarrinho from "./NavBarCarrinho";
-import { Produto } from "./Produtos";
+import NavBarCarrinho from "./components/NavBarCarrinho";
+import { Produto } from "./components/Produtos";
 import { useLocation, useNavigate } from "react-router-dom";
-import Features from "./Features";
-import Overview from "./Overview";
-import BotaoAcao from "./BotaoAcao";
+import Features from "./components/Features";
+import Overview from "./components/Overview";
+import BotaoAcao from "./components/BotaoAcao";
 import { adicionarAoCarrinho } from "./utils/GerenciarCarrinho";
 import useGoBack from "./utils/useGoBack";
 const ProductDetail: React.FC = () => {

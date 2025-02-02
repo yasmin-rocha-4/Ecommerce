@@ -1,4 +1,4 @@
-import { Produto } from "../Produtos";
+import { Produto } from "../components/Produtos";
 const alterarQuantidade = (
     id: string,
     delta: number,

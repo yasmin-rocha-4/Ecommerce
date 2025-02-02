@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import seta from "./assets/Icon/chevron-left.svg";
 import search from "./assets/Icon/Search.svg";
 import carrinho from "./assets/Icon/shopping-cart.svg";
-import BarraPesquisa from "./BarraPesquisa";
-import ProdutosPopulares from "./ProdutosPopulares";
+import BarraPesquisa from "./components/BarraPesquisa";
+import ProdutosPopulares from "./components/ProdutosPopulares";
 import useGoBack from "./utils/useGoBack";
 const Search: React.FC = ()=>{
     const voltar = useGoBack();

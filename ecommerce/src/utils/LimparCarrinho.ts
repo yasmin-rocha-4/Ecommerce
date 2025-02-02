@@ -1,4 +1,4 @@
-import { Produto } from "../Produtos";
+import { Produto } from "../components/Produtos";
 const limparCarrinho = (
     setCarrinho: React.Dispatch<
       React.SetStateAction<{ produto: Produto; quantidade: number }[]>

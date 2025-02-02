@@ -1,4 +1,4 @@
-import { Produto } from "../Produtos";
+import { Produto } from "../components/Produtos";
 
 export const adicionarAoCarrinho = (
   produto: Produto,

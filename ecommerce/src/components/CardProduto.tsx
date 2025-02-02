@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import FooterReviews from "./utils/footerReviews";
+import FooterReviews from "../utils/footerReviews";
 import { Produto } from "./Produtos";
 export interface CardProdutoProps {
   ListaProduto: Produto[];

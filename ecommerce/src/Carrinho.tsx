@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Produto } from "./Produtos";
+import { Produto } from "./components/Produtos";
 import seta from "./assets/Icon/chevron-left.svg"
 import lixeiraPreta from "./assets/Icon/trash-2.svg";
 import shoppingCart from "./assets/Icon/ShoppingCart.svg";
@@ -10,8 +10,8 @@ import {
   limparCarrinho,
   calcularTotal,
 } from "./utils/GerenciarCarrinho";
-import Navbar from "./Navbar";
-import BotaoAcao from "./BotaoAcao";
+import Navbar from "./components/Navbar";
+import BotaoAcao from "./components/BotaoAcao";
 import useGoBack from "./utils/useGoBack";
 
 const Cart: React.FC = () => {

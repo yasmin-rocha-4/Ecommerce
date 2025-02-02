@@ -1,4 +1,4 @@
-import { Produto } from "../Produtos";
+import { Produto } from "../components/Produtos";
 
 // Recupera o carrinho do localStorage ou inicializa como um array vazio
 let carrinho: { produto: Produto; quantidade: number }[] = JSON.parse(localStorage.getItem("carrinho") || "[]");

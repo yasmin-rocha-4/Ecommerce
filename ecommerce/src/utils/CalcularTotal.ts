@@ -1,4 +1,4 @@
-import { Produto } from "../Produtos";
+import { Produto } from "../components/Produtos";
 
 const calcularTotal = (carrinho: { produto: Produto; quantidade: number }[]) => {
   return carrinho.reduce(

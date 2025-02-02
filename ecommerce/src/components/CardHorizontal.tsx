@@ -1,6 +1,6 @@
 import React from "react";
 import { CardProdutoProps } from "./CardProduto";
-import FooterReviews from "./utils/footerReviews";
+import FooterReviews from "../utils/footerReviews";
 const CardHorizontal: React.FC<CardProdutoProps> = ({ListaProduto})=>{
     const produtos = ListaProduto;
     return(
