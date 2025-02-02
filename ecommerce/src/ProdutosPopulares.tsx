@@ -1,6 +1,6 @@
 import React from "react";
 import UseProdutos from "./Produtos";
-import { Produto } from "./CardProduto";
+import { Produto } from "./Produtos";
 import CardHorizontal from "./CardHorizontal";
 
 const ProdutosPopulares: React.FC = () => {

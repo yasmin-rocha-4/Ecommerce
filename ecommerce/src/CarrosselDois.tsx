@@ -3,7 +3,7 @@ import CardProduto from "./CardProduto";
 import UseProdutos from "./Produtos"; // Hook personalizado para buscar os produtos
 
 interface CarrosselDoisProps {
-  categoria: string;
+  categoria?: string; // Torna a categoria opcional
 }
 
 const CarrosselDois: React.FC<CarrosselDoisProps> = ({ categoria }) => {
@@ -11,10 +11,12 @@ const CarrosselDois: React.FC<CarrosselDoisProps> = ({ categoria }) => {
   const [currentPage, setCurrentPage] = useState(0); // Estado para a página atual
   const productsPerPage = 2; // Quantidade de produtos por página
 
-  // Filtra os produtos por categoria
-  const produtosFiltrados = produtos.filter(
-    (produto) => produto.category.toLowerCase() === categoria.toLowerCase()
-  );
+  // Se categoria for passada, filtra os produtos, caso contrário, exibe todos os produtos
+  const produtosFiltrados = categoria
+    ? produtos.filter(
+        (produto) => produto.category.toLowerCase() === categoria.toLowerCase()
+      )
+    : produtos;
 
   // Calcula os produtos a serem exibidos na página atual
   const startIndex = currentPage * productsPerPage;
@@ -42,13 +44,11 @@ const CarrosselDois: React.FC<CarrosselDoisProps> = ({ categoria }) => {
   }
 
   return (
-    <div className="p-4">
+    <div>
       {produtosFiltrados.length > 0 ? (
-        <>
-          <CardProduto ListaProduto={produtosPagina} />
-        </>
+        <CardProduto ListaProduto={produtosPagina} />
       ) : (
-        <p>Nenhum produto encontrado na categoria {categoria}.</p>
+        <p>{categoria ? `Nenhum produto encontrado na categoria ${categoria}.` : "Nenhum produto encontrado."}</p>
       )}
     </div>
   );

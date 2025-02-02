@@ -3,13 +3,14 @@ interface NavbarProps{
   opcao: string,
   icone:string,
   titulo?:string
+  funcao?: (e: React.FormEvent<Element>) => void | Promise<void>;
 }
-const Navbar: React.FC<NavbarProps> = ({opcao, icone,titulo}) =>{
+const Navbar: React.FC<NavbarProps> = ({opcao, icone,titulo, funcao}) =>{
     return(
         <div style={styles.navegacao}>
       <img style = {styles.img}src={opcao} alt="Menu" />
       <img style = {styles.img}src={titulo} alt="Logo" />
-      <img style = {styles.img}src={icone} alt="Avatar" />
+      <img onClick={funcao} style = {styles.img}src={icone} alt="Avatar" />
     </div>
     );
 }

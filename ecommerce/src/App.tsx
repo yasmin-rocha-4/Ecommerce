@@ -5,6 +5,8 @@ import Home from "./Home";
 import AllProducts from "./AllProducts";
 import ProductDetail from "./ProductDetail";
 import Search from "./Search";
+
+//import Cart from "./Carrinho";
 function App() {
   return (
     <Router>
@@ -14,11 +16,13 @@ function App() {
         <Route path="/cadastro" element={<Cadastro titulo="Audio" descricao="its modular and desined to last"/>} />
         <Route path="/home" element={<Home />} />
         <Route path="/allProducts" element={<AllProducts />} />
-        <Route path="/productDetail" element = {<ProductDetail/>}/>
+        <Route path="/productDetail" element={<ProductDetail />} />
         <Route path="/search" element = {<Search/>}/>
-      </Routes>
+        <Route path="/carrinho" element = {<Cart/>}/>
+      </Routes> 
     </Router>
   );
 }
+import Cart from "./Carrinho";
 
 export default App;
