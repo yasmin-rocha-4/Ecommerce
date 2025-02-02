@@ -4,7 +4,9 @@ import CardProduto from "./CardProduto";
 import NavBarCarrinho from "./NavBarCarrinho";
 import FiltroModal from "./filtro";
 import icone from "./assets/Icon/sliders.svg";
+import useGoBack from "./utils/useGoBack";
 const AllProducts: React.FC = () => {
+  const voltar = useGoBack();
   const { produtos, loading, error } = UseProdutos();
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -35,7 +37,7 @@ const AllProducts: React.FC = () => {
 
   return (
     <div>
-      <NavBarCarrinho />
+      <NavBarCarrinho voltar={voltar} />
       <button
         onClick={() => setShowFilter(true)}
         style={{

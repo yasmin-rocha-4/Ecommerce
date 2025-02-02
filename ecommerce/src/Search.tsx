@@ -5,10 +5,12 @@ import search from "./assets/Icon/Search.svg";
 import carrinho from "./assets/Icon/shopping-cart.svg";
 import BarraPesquisa from "./BarraPesquisa";
 import ProdutosPopulares from "./ProdutosPopulares";
+import useGoBack from "./utils/useGoBack";
 const Search: React.FC = ()=>{
+    const voltar = useGoBack();
     return(
         <div style={{height:"100vh", fontFamily:"Montserrat, serif"}}>
-            <Navbar opcao={seta} icone={carrinho}  titulo={search}/>
+            <Navbar voltar={voltar} opcao={seta} icone={carrinho}  titulo={search}/>
             <BarraPesquisa/>
             <div
             style={{

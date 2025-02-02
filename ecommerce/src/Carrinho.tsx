@@ -12,8 +12,10 @@ import {
 } from "./utils/GerenciarCarrinho";
 import Navbar from "./Navbar";
 import BotaoAcao from "./BotaoAcao";
+import useGoBack from "./utils/useGoBack";
 
 const Cart: React.FC = () => {
+  const voltar = useGoBack();
   const [carrinho, setCarrinho] = useState<{ produto: Produto; quantidade: number }[]>([]);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Cart: React.FC = () => {
 
   return (
     <div>
-        <Navbar opcao={seta}titulo={shoppingCart} icone={lixeiraPreta} funcao={handleClick}/>
+        <Navbar voltar={voltar} opcao={seta}titulo={shoppingCart} icone={lixeiraPreta} funcao={handleClick}/>
       {carrinho.length === 0 ? (
         <p>Seu carrinho está vazio</p>
       ) : (

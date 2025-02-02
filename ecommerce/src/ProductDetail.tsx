@@ -6,8 +6,9 @@ import Features from "./Features";
 import Overview from "./Overview";
 import BotaoAcao from "./BotaoAcao";
 import { adicionarAoCarrinho } from "./utils/GerenciarCarrinho";
-
+import useGoBack from "./utils/useGoBack";
 const ProductDetail: React.FC = () => {
+  const voltar = useGoBack();
   const [selectedButtonOverview, setSelectedButtonOverview] = useState(true);
   const [selectedButtonFeatures, setSelectedButtonFeatures] = useState(false);
 
@@ -37,7 +38,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div style={{ fontFamily: "Montserrat, serif", margin: "20px", padding: "0" }}>
-      <NavBarCarrinho funcao={handleNavigate} />
+      <NavBarCarrinho voltar ={voltar} funcao={handleNavigate} />
       <p style={{ color: "#0ACF83", fontSize: "1rem", fontWeight: "400" }}>
         USD {produto.price}
       </p>
