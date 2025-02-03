@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+
 interface BotoesCategoriaProps {
   onCategoriaChange: (categoria: string) => void; // Função para notificar o valor do botão
 }
+
 const BotoesCategoria: React.FC<BotoesCategoriaProps> = ({ onCategoriaChange }) => {
-  const [selectedButton, setSelectedButton] = useState("Headphone");
+  const [selectedButton, setSelectedButton] = useState("headphones"); // Estado armazenando valores consistentes com os atributos dos produtos
+
   const handleClick = (categoria: string) => {
     setSelectedButton(categoria);
-    onCategoriaChange(categoria); // Notifica o valor para a página principal
+    onCategoriaChange(categoria); // Notifica a página principal com o valor correto
   };
 
   return (
@@ -14,18 +17,18 @@ const BotoesCategoria: React.FC<BotoesCategoriaProps> = ({ onCategoriaChange }) 
       <button
         style={{
           ...styles.button,
-          ...(selectedButton === "Headphone" ? styles.selected : {}),
+          ...(selectedButton === "headphones" ? styles.selected : {}), // Verifica o botão selecionado
         }}
-        onClick={() => handleClick("headphones")}
+        onClick={() => handleClick("headphones")} // Passa o valor consistente
       >
         Headphone
       </button>
       <button
         style={{
           ...styles.button,
-          ...(selectedButton === "Headset" ? styles.selected : {}),
+          ...(selectedButton === "headsets" ? styles.selected : {}), // Verifica o botão selecionado
         }}
-        onClick={() => handleClick("headsets")}
+        onClick={() => handleClick("headsets")} // Passa o valor consistente
       >
         Headset
       </button>
@@ -37,23 +40,23 @@ const styles = {
   container: {
     display: "flex",
     alignItems: "center",
-    gap: "10px", 
-    marginTop:"30px"
+    gap: "10px",
+    marginTop: "30px",
   },
   button: {
     border: "none",
     borderRadius: "20px",
     padding: "10px 20px",
     backgroundColor: "transparent",
-    color: "#888", 
+    color: "#888",
     cursor: "pointer",
     fontSize: "14px",
     fontWeight: "bold",
     outline: "none",
   },
   selected: {
-    backgroundColor: "#20c997", 
-    color: "#fff", 
+    backgroundColor: "#20c997",
+    color: "#fff",
   },
 };
 
