@@ -1,7 +1,12 @@
 import React from "react";
-import { RecebeProduto } from "./interfaceProduto";
+import { Produto } from "../components/Produtos";
 
-const ContarReviews: React.FC<RecebeProduto> = ({produto})=>{
-    return produto.reviews.length;
+interface ContarReviewsProps {
+  produto: Produto;
 }
-export default ContarReviews
+
+const ContarReviews: React.FC<ContarReviewsProps> = ({ produto }) => {
+  return <>{produto.reviews.length}</>; // Exibe a quantidade de reviews
+};
+
+export default ContarReviews;
