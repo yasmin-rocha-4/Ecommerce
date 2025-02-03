@@ -8,14 +8,20 @@ const renderStars = (rating: number) => {
 
   return (
     <>
+      {/* Exibir estrelas cheias (amarelas) */}
       {Array.from({ length: fullStars }).map((_, i) => (
-        <FontAwesomeIcon key={`full-${i}`} icon={fullStar} className="text-yellow-500" />
+        <FontAwesomeIcon key={`full-${i}`} icon={fullStar} style={{ color: "#FFC120" }} />
       ))}
-      {hasHalfStar && <FontAwesomeIcon icon={halfStar} className="text-yellow-500" />}
+
+      {/* Exibir meia estrela */}
+      {hasHalfStar && <FontAwesomeIcon icon={halfStar} style={{ color: "#FFC120" }} />}
+
+      {/* Exibir estrelas vazias */}
       {Array.from({ length: 5 - Math.ceil(rating) }).map((_, i) => (
-        <FontAwesomeIcon key={`empty-${i}`} icon={emptyStar} className="text-gray-400" />
+        <FontAwesomeIcon key={`empty-${i}`} icon={emptyStar} style={{ color: "#F59E0B" }} />
       ))}
     </>
   );
 };
+
 export default renderStars;
