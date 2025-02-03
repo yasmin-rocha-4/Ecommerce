@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UseProdutos from "./components/Produtos";
 import CardProduto from "./components/CardProduto";
 import NavBarCarrinho from "./components/NavBarCarrinho";
 import FiltroModal from "./components/filtro";
 import icone from "./assets/Icon/sliders.svg";
 import useGoBack from "./utils/useGoBack";
+import {obterQuantidadeCarrinho } from "./utils/GerenciarCarrinho";
+import {useNavigate } from "react-router-dom";
 const AllProducts: React.FC = () => {
+  const navigate = useNavigate();
   const voltar = useGoBack();
   const { produtos, loading, error } = UseProdutos();
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedSort, setSelectedSort] = useState<string>("Popularity");
+    const [quantidadeCarrinho, setQuantidadeCarrinho] = useState(0); // Estado para a quantidade de itens no carrinho
+useEffect(() => {
+    // Atualiza a quantidade de itens no carrinho ao carregar a página
+    setQuantidadeCarrinho(obterQuantidadeCarrinho());
+  }, []);
+    const handleNavigate = (e: React.FormEvent) => {
+      e.preventDefault(); 
+      navigate("/carrinho"); 
+    };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -37,7 +49,7 @@ const AllProducts: React.FC = () => {
 
   return (
     <div>
-      <NavBarCarrinho voltar={voltar} />
+      <NavBarCarrinho quantidade={quantidadeCarrinho} voltar={voltar} funcao={handleNavigate} />
       <h1 style={{margin:"20px", fontWeight:"bold"}}>All Products</h1>
       <button
         onClick={() => setShowFilter(true)}
