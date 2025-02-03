@@ -5,7 +5,7 @@ import TrocarPaginaLogin from "./components/TrocarPaginaLogin";
 import iconeEmail from "./assets/Icon/mail.svg";
 import cadeado from "./assets/Icon/lock.svg";
 import fundoLogin from "./assets/fundoLogin.svg";
-import "./assets/login.css";
+import "./assets/css/login.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./utils/firebase"; 
 interface CadastroProps {

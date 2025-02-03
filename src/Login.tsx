@@ -4,7 +4,7 @@ import EntrarComGoogle from "./components/EntrarComGoogle";
 import TrocarPaginaLogin from "./components/TrocarPaginaLogin";
 import IconeEmail from "./assets/Icon/mail.svg";
 import cadeado from "./assets/Icon/lock.svg";
-import "./assets/login.css";
+import "./assets/css/login.css";
 import fundoLogin from "./assets/fundoLogin.svg";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./utils/firebase";

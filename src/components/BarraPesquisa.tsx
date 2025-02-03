@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../assets/css/barraPesquisa.css" // Import do CSS
 import iconPesquisa from "../assets/Icon/IconePesquisa.svg";
 import { useNavigate } from "react-router-dom";
 import UseProdutos from "./Produtos";
@@ -28,7 +29,6 @@ const BarraPesquisa: React.FC = () => {
           style={styles.input}
         />
       </div>
-      {/* Exibe o CardHorizontal apenas se searchTerm não estiver vazio */}
       {searchTerm.trim() && (
         <CardHorizontal ListaProduto={filteredProducts} />
       )}
