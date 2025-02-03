@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBarCarrinho from "./components/NavBarCarrinho";
 import { Produto } from "./components/Produtos";
 import { useLocation, useNavigate } from "react-router-dom";
 import Features from "./components/Features";
 import Overview from "./components/Overview";
 import BotaoAcao from "./components/BotaoAcao";
-import { adicionarAoCarrinho } from "./utils/GerenciarCarrinho";
+import { adicionarAoCarrinho, obterQuantidadeCarrinho } from "./utils/GerenciarCarrinho"; // Função para obter a quantidade no carrinho
 import useGoBack from "./utils/useGoBack";
+
 const ProductDetail: React.FC = () => {
   const voltar = useGoBack();
   const [selectedButtonOverview, setSelectedButtonOverview] = useState(true);
   const [selectedButtonFeatures, setSelectedButtonFeatures] = useState(false);
+  const [quantidadeCarrinho, setQuantidadeCarrinho] = useState(0); // Estado para a quantidade de itens no carrinho
 
   const navigate = useNavigate();
   const location = useLocation();
   const produto = location.state as Produto;
+
+  useEffect(() => {
+    // Atualiza a quantidade de itens no carrinho ao carregar a página
+    setQuantidadeCarrinho(obterQuantidadeCarrinho());
+  }, []);
 
   const handleClickOverview = () => {
     setSelectedButtonOverview(true);
@@ -29,16 +36,18 @@ const ProductDetail: React.FC = () => {
   const handleAddToCart = (e: React.FormEvent) => {
     e.preventDefault();
     adicionarAoCarrinho(produto);
+    setQuantidadeCarrinho(obterQuantidadeCarrinho()); // Atualiza a quantidade no carrinho
   };
 
   const handleNavigate = (e: React.FormEvent) => {
-    e.preventDefault();
-    navigate("/carrinho");
+    e.preventDefault(); 
+    navigate("/carrinho"); 
   };
+  
 
   return (
     <div style={{ fontFamily: "Montserrat, serif", margin: "20px", padding: "0" }}>
-      <NavBarCarrinho voltar ={voltar} funcao={handleNavigate} />
+      <NavBarCarrinho  funcao={handleNavigate} voltar={voltar} quantidade={quantidadeCarrinho} />
       <p style={{ color: "#0ACF83", fontSize: "1rem", fontWeight: "400" }}>
         USD {produto.price}
       </p>
