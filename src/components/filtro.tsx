@@ -38,7 +38,7 @@ const FiltroModal: React.FC<FiltroModalProps> = ({
     // Ordenar
     switch (selectedSort) {
       case "Popularity":
-        produtosFiltrados.sort((a, b) => b.popularity - a.popularity); // Verifique se `popularity` é numérico
+        produtosFiltrados.sort((a, b) => b.popularity - a.popularity); 
         break;
       case "Newest":
         produtosFiltrados.sort(

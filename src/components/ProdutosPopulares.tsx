@@ -4,20 +4,27 @@ import { Produto } from "./Produtos";
 import CardHorizontal from "./CardHorizontal";
 
 const ProdutosPopulares: React.FC = () => {
-  const { produtos }: { produtos: Produto[] } = UseProdutos(); // Garante que produtos é um array de Produto
+  // Garante que `UseProdutos` retorna produtos e está tipado corretamente
+  const { produtos }: { produtos: Produto[] } = UseProdutos();
 
   // Função para pegar os 3 produtos mais populares
   const getTopReviewedProducts = (produtos: Produto[]): Produto[] => {
     return [...produtos] // Cria uma cópia do array original
-      .sort((a, b) => b.reviews.length - a.reviews.length) // Ordena por quantidade de reviews
+      .sort((a, b) => b.popularity - a.popularity) // Ordena por popularidade
       .slice(0, 3); // Retorna os 3 primeiros produtos
   };
 
-  const topReviewedProducts = getTopReviewedProducts(produtos); // Obtém os produtos populares
+  // Obtém os produtos mais populares
+  const topReviewedProducts = produtos ? getTopReviewedProducts(produtos) : [];
 
   return (
-    <div style={{display:"flex", flexDirection:"column", gap:"1rem"}}>
-      <CardHorizontal ListaProduto={topReviewedProducts} />
+    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      {/* Garante que os produtos estão sendo passados corretamente */}
+      {topReviewedProducts.length > 0 ? (
+        <CardHorizontal ListaProduto={topReviewedProducts} />
+      ) : (
+        <p>Nenhum produto popular encontrado.</p>
+      )}
     </div>
   );
 };
