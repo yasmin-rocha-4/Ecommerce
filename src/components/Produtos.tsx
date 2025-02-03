@@ -14,6 +14,8 @@ export interface Produto {
     comment: string;
     postedAt: string;
   }[];
+  popularity: number,
+  createdAt: Date
 }
 
 const UseProdutos = () => {

@@ -1,5 +1,7 @@
 import React from "react";
+import { Produto } from "./Produtos";
 
+// FiltroModal.tsx
 interface FiltroModalProps {
   showFilter: boolean;
   setShowFilter: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,7 +9,9 @@ interface FiltroModalProps {
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
   selectedSort: string;
   setSelectedSort: React.Dispatch<React.SetStateAction<string>>;
+  produtos: Produto[]; // Adicionando `produtos`
 }
+
 
 const FiltroModal: React.FC<FiltroModalProps> = ({
   showFilter,
@@ -16,8 +20,49 @@ const FiltroModal: React.FC<FiltroModalProps> = ({
   setSelectedCategory,
   selectedSort,
   setSelectedSort,
+  produtos,
 }) => {
   if (!showFilter) return null;
+
+  // Função para aplicar os filtros e ordenações
+  const aplicarFiltro = () => {
+    let produtosFiltrados = [...produtos];
+
+    // Filtrar por categoria
+    if (selectedCategory !== "All") {
+      produtosFiltrados = produtosFiltrados.filter(
+        (produto) => produto.category === selectedCategory
+      );
+    }
+
+    // Ordenar
+    switch (selectedSort) {
+      case "Popularity":
+        produtosFiltrados.sort((a, b) => b.popularity - a.popularity); // Verifique se `popularity` é numérico
+        break;
+      case "Newest":
+        produtosFiltrados.sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        break;
+      case "Oldest":
+        produtosFiltrados.sort(
+          (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        );
+        break;
+      case "High Price":
+        produtosFiltrados.sort((a, b) => b.price - a.price);
+        break;
+      case "Low Price":
+        produtosFiltrados.sort((a, b) => a.price - b.price);
+        break;
+      default:
+        break;
+    }
+
+    // Fechar modal
+    setShowFilter(false);
+  };
 
   return (
     <div
@@ -74,45 +119,23 @@ const FiltroModal: React.FC<FiltroModalProps> = ({
             Category
           </h3>
           <div style={{ display: "flex", gap: "8px" }}>
-            <button
-              style={{
-                padding: "8px 16px",
-                backgroundColor: selectedCategory === "headphones" ? "#28a745" : "#fff",
-                color: selectedCategory === "headphones" ? "#fff" : "#000",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                cursor: "pointer",
-              }}
-              onClick={() => setSelectedCategory("headphones")}
-            >
-              Headphone
-            </button>
-            <button
-              style={{
-                padding: "8px 16px",
-                backgroundColor: selectedCategory === "headsets" ? "#28a745" : "#fff",
-                color: selectedCategory === "headsets" ? "#fff" : "#000",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                cursor: "pointer",
-              }}
-              onClick={() => setSelectedCategory("headsets")}
-            >
-              Headset
-            </button>
-            <button
-              style={{
-                padding: "8px 16px",
-                backgroundColor: selectedCategory === "All" ? "#28a745" : "#fff",
-                color: selectedCategory === "All" ? "#fff" : "#000",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                cursor: "pointer",
-              }}
-              onClick={() => setSelectedCategory("All")}
-            >
-              All
-            </button>
+            {["headphones", "headsets", "All"].map((categoria) => (
+              <button
+                key={categoria}
+                style={{
+                  padding: "8px 16px",
+                  backgroundColor:
+                    selectedCategory === categoria ? "#28a745" : "#fff",
+                  color: selectedCategory === categoria ? "#fff" : "#000",
+                  borderRadius: "4px",
+                  border: "1px solid #ccc",
+                  cursor: "pointer",
+                }}
+                onClick={() => setSelectedCategory(categoria)}
+              >
+                {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -122,71 +145,24 @@ const FiltroModal: React.FC<FiltroModalProps> = ({
             Sort By
           </h3>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
-            <button
-              style={{
-                padding: "8px",
-                backgroundColor: selectedSort === "Popularity" ? "#28a745" : "#fff",
-                color: selectedSort === "Popularity" ? "#fff" : "#000",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                cursor: "pointer",
-              }}
-              onClick={() => setSelectedSort("Popularity")}
-            >
-              Popularity
-            </button>
-            <button
-              style={{
-                padding: "8px",
-                backgroundColor: selectedSort === "Newest" ? "#28a745" : "#fff",
-                color: selectedSort === "Newest" ? "#fff" : "#000",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                cursor: "pointer",
-              }}
-              onClick={() => setSelectedSort("Newest")}
-            >
-              Newest
-            </button>
-            <button
-              style={{
-                padding: "8px",
-                backgroundColor: selectedSort === "Oldest" ? "#28a745" : "#fff",
-                color: selectedSort === "Oldest" ? "#fff" : "#000",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                cursor: "pointer",
-              }}
-              onClick={() => setSelectedSort("Oldest")}
-            >
-              Oldest
-            </button>
-            <button
-              style={{
-                padding: "8px",
-                backgroundColor: selectedSort === "High Price" ? "#28a745" : "#fff",
-                color: selectedSort === "High Price" ? "#fff" : "#000",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                cursor: "pointer",
-              }}
-              onClick={() => setSelectedSort("High Price")}
-            >
-              High Price
-            </button>
-            <button
-              style={{
-                padding: "8px",
-                backgroundColor: selectedSort === "Low Price" ? "#28a745" : "#fff",
-                color: selectedSort === "Low Price" ? "#fff" : "#000",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                cursor: "pointer",
-              }}
-              onClick={() => setSelectedSort("Low Price")}
-            >
-              Low Price
-            </button>
+            {["Popularity", "Newest", "Oldest", "High Price", "Low Price"].map(
+              (sort) => (
+                <button
+                  key={sort}
+                  style={{
+                    padding: "8px",
+                    backgroundColor: selectedSort === sort ? "#28a745" : "#fff",
+                    color: selectedSort === sort ? "#fff" : "#000",
+                    borderRadius: "4px",
+                    border: "1px solid #ccc",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setSelectedSort(sort)}
+                >
+                  {sort}
+                </button>
+              )
+            )}
           </div>
         </div>
 
@@ -200,7 +176,7 @@ const FiltroModal: React.FC<FiltroModalProps> = ({
             border: "none",
             cursor: "pointer",
           }}
-          onClick={() => setShowFilter(false)}
+          onClick={aplicarFiltro}
         >
           Apply Filter
         </button>
