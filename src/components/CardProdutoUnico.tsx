@@ -2,16 +2,18 @@ import React from "react";
 import { CardProdutoProps } from "./CardProduto";
 import { useNavigate } from "react-router-dom";
 import setaDireita from "../assets/Icon/arrow-right.svg"
+import { Produto } from "./Produtos";
 const CardProdutoUnico: React.FC<CardProdutoProps> = ({ListaProduto}) =>{
     const produtos = ListaProduto;
     const navigate = useNavigate();
-    const handleClick = () => {
-        navigate("/productDetail");
-      };
+  const handleClick = (produto: Produto) => {
+    // Navega para a página de detalhes, passando o produto selecionado via 'state'
+    navigate("/productDetail", { state: produto });
+  };
     return(
         <div>
             {produtos.map((produto)=>(
-                <div onClick={handleClick} style={{display:"grid", gridTemplateColumns:"1fr 1fr",gap: "1rem", width:"100%", background:"#ffff"}}>
+                <div  onClick={() => handleClick(produto)}style={{display:"grid", gridTemplateColumns:"1fr 1fr",gap: "1rem", width:"100%", background:"#ffff"}}>
                     <div style={{display: "flex", flexDirection:"column"}}>
                         <p style={{fontWeight: "700", fontSize:"2rem"}}>{produto.name}</p>
                         <div style={{display:"inline-flex", gap:"0.5rem", alignItems:"center"}}>
