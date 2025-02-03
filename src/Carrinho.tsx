@@ -8,6 +8,7 @@ import {
   alterarQuantidade,
   removerProduto,
   limparCarrinho,
+  obterQuantidadeCarrinho,
   calcularTotal,
 } from "./utils/GerenciarCarrinho";
 import Navbar from "./components/Navbar";
@@ -80,7 +81,7 @@ const Cart: React.FC = () => {
             ))}
             <div style={{position:"absolute", bottom:"10px", width:"100%"}}>
                 <div style={{display:"flex", justifyContent:"space-between"}}>
-                <p >Total {carrinho.length} items</p>
+                <p>Total {obterQuantidadeCarrinho()} itens</p>
                     <p>${calcularTotal().toFixed(2)}</p>
                 </div>
             
